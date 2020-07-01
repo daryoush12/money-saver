@@ -25,4 +25,8 @@ Component structure is as follows:
 
 ![screenshot](https://i.gyazo.com/e2f07995a9410d7e49f28e882520fd6e.png)
 
+NOTE: I mixed in ES6 stateful and ES7 stateless components because i was not familiar with ES7 way of creating stateful component during development.
+
 Cost editing and deleting functionality is inside the Cost component that is also used to render cost element in the list. However when user clicks edit button the component goes it into edit mode and lets user change data. With this i tried to limit the amount of components needed and because as of now (or as far as my knowledge goes) react does not support custom event emitting from components this means i cant transmit state data from child components without using redux global store. I felt like it was unnecessary layer of abstraction i chose afromentioned approach instead.
+
+
