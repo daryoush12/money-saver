@@ -1,19 +1,6 @@
 import { ADD_COST, REMOVE_COST, EDIT_COST } from '../actions/costActions'
 
-const initialState = [
-    {
-        id: '123asd',
-        reason: 'clothes',
-        amount: 25,
-        type: 'Income',
-    },
-    {
-        id: '123asdgy',
-        reason: 'bags',
-        amount: 20,
-        type: 'Expense',
-    },
-]
+const initialState = []
 
 function costs(state = [], action) {
     switch (action.type) {

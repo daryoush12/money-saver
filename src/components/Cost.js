@@ -16,12 +16,9 @@ export class Cost extends Component {
         }
 
         this.deleteCost = this.deleteCost.bind(this)
-        this.editCost = this.editCost.bind(this)
-        this.saveEdit = this.saveEdit.bind(this)
-
-        this.editAmount = this.editAmount.bind(this)
-        this.editReason = this.editReason.bind(this)
-        this.editType = this.editType.bind(this)
+        this.editDone = this.editDone.bind(this)
+        this.setInput = this.setInput.bind(this)
+        this.startEdit = this.startEdit.bind(this)
     }
     render() {
         const { cost } = this.props
@@ -29,45 +26,50 @@ export class Cost extends Component {
             <div>
                 {this.state.editing ? (
                     <div>
-                        Editing
                         <TextField
                             type="text"
+                            name="reason"
                             value={this.state.edit_form.reason}
-                            onChange={this.editReason}
+                            onChange={this.setInput}
                             id="outlined-basic"
                             label="Reason"
                             variant="outlined"
                         ></TextField>
                         <TextField
                             type="number"
-                            onChange={this.editAmount}
+                            name="amount"
+                            onChange={this.setInput}
                             value={this.state.edit_form.amount}
                             id="outlined-basic"
                             label="Amount"
                             variant="outlined"
                         ></TextField>
                         <Select
-                            onChange={this.editType}
+                            onChange={this.setInput}
                             value={this.state.edit_form.type}
+                            name="type"
                         >
                             <MenuItem value="Income">Income</MenuItem>
                             <MenuItem value="Expense">Expense</MenuItem>
                         </Select>
-                        <Button variant="contained" onClick={this.saveEdit}>
+                        <Button variant="contained" onClick={this.editDone}>
                             Save
                         </Button>
                     </div>
                 ) : (
                     <div>
                         <p>
-                            {cost.reason} {cost.amount}e{' '}
+                            {cost.reason} {cost.amount}e {cost.type}
                             <Button
                                 variant="contained"
                                 onClick={this.deleteCost}
                             >
                                 Delete
                             </Button>
-                            <Button variant="contained" onClick={this.editCost}>
+                            <Button
+                                variant="contained"
+                                onClick={this.startEdit}
+                            >
                                 Edit
                             </Button>
                         </p>
@@ -82,16 +84,14 @@ export class Cost extends Component {
         event.preventDefault()
     }
 
-    editCost(event) {
+    startEdit() {
         this.setState({
             ...this.state,
             editing: true,
         })
-
-        event.preventDefault()
     }
 
-    saveEdit(event) {
+    editDone(event) {
         this.props.edit(this.state.edit_form)
         this.setState({
             ...this.state,
@@ -100,34 +100,18 @@ export class Cost extends Component {
         event.preventDefault()
     }
 
-    editReason(event) {
-        this.setState({
-            edit_form: {
-                ...this.state.edit_form,
-                reason: event.target.value,
-            },
-        })
-        event.preventDefault()
-    }
+    setInput(event) {
+        var value =
+            event.target.name === 'amount'
+                ? parseInt(event.target.value)
+                : event.target.value
 
-    editAmount(event) {
         this.setState({
             edit_form: {
                 ...this.state.edit_form,
-                amount: event.target.value,
+                [event.target.name]: value,
             },
         })
-        event.preventDefault()
-    }
-
-    editType(event) {
-        this.setState({
-            edit_form: {
-                ...this.state.edit_form,
-                type: event.target.value,
-            },
-        })
-        event.preventDefault()
     }
 }
 

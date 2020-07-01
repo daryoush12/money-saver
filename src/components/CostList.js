@@ -14,7 +14,7 @@ function CostList({ costs } = this.state) {
                         <Cost key={cost.id} cost={cost} />
                     ))}
                     <br></br>
-                    Total: {totalCostTally(costs)}e
+                    Monthly gain after expenses: {totalCostTally(costs)}e
                 </div>
             ) : (
                 <div>No Expenses</div>
@@ -26,7 +26,9 @@ function CostList({ costs } = this.state) {
 function totalCostTally(listofcosts) {
     var result = 0
     for (var i = 0; i < listofcosts.length; i++) {
-        result += listofcosts[i].amount
+        if (listofcosts[i].type === 'Expense') {
+            result -= listofcosts[i].amount
+        } else result += listofcosts[i].amount
     }
     return result
 }
