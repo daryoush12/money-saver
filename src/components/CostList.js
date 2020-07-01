@@ -7,11 +7,17 @@ function CostList({ costs } = this.state) {
 
     return (
         <div>
-            {costs.map((cost) => (
-                <Cost key={cost.id} cost={cost} />
-            ))}
-            <br></br>
-            Total: {totalCostTally(costs)}e
+            {costs.length > 0 ? (
+                <div>
+                    {costs.map((cost) => (
+                        <Cost key={cost.id} cost={cost} />
+                    ))}
+                    <br></br>
+                    Total: {totalCostTally(costs)}e
+                </div>
+            ) : (
+                <div>No Expenses</div>
+            )}
         </div>
     )
 }

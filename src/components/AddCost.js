@@ -27,13 +27,11 @@ class AddCost extends Component {
                 <input
                     type="text"
                     name="reason"
-                    value={this.state.form.reason}
                     onChange={this.setReason}
                 ></input>
                 <input
                     type="number"
                     name="amount"
-                    value={this.state.form.reason}
                     onChange={this.setAmount}
                 ></input>
                 <select onChange={this.setType}>

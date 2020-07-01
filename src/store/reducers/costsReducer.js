@@ -5,11 +5,13 @@ const initialState = [
         id: '123asd',
         reason: 'clothes',
         amount: 25,
+        type: 'Income',
     },
     {
         id: '123asdgy',
         reason: 'bags',
         amount: 20,
+        type: 'Expense',
     },
 ]
 
@@ -24,11 +26,16 @@ function costs(state = [], action) {
             return [...state.filter((cost) => cost !== action.cost)]
         }
         case EDIT_COST: {
-            for (var i = 0; i < state.length; i++) {
-                if (state[i].id == action.id) {
-                    return [...(state[i] == action.cost)]
+            return state.map((cost) => {
+                if (cost.id !== action.cost.id) {
+                    return cost
+                } else {
+                    return {
+                        ...cost,
+                        ...action.cost,
+                    }
                 }
-            }
+            })
         }
 
         default:
