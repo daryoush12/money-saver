@@ -11,7 +11,15 @@ Libraries used:
 - Redux (React-redux)
 - React Material (Basic UI)
 
-I decided to approach this assignment with simplicity in mind so i used Redux(React-redux) to create a global store for the app where all the information is stored and then distributed to all components. Keeping them decoupled and independent from eachother. I decided to leave out other suggested libraries because i felt like they were unnecessary for the minimum features needed for the app. I believe in using libraries when they solve a problem i might face during development.
+Libraries that were suggested but leftout:
+
+- styled-components
+- react-router
+- prop-types
+
+I approached this assignment with simplicity in mind so i used Redux(React-redux) to create a global store for the app where all the information is stored and then distributed to all components. Keeping them decoupled and independent from eachother. I decided to leave out other suggested libraries because i felt like they were unnecessary for the minimum features needed for the app. For example router was not needed because i decided to build a single page application where user does not need to change views for different actions.
+
+I believe in using libraries when they solve a problem i might face during development.
 
 Component structure is as follows:
 
