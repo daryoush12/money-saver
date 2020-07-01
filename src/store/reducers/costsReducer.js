@@ -16,13 +16,11 @@ const initialState = [
 ]
 
 function costs(state = [], action) {
-    console.log(action)
     switch (action.type) {
         case ADD_COST: {
             return [...state, action.cost]
         }
         case REMOVE_COST: {
-            var removable = state.indexOf(action)
             return [...state.filter((cost) => cost !== action.cost)]
         }
         case EDIT_COST: {

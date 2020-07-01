@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Cost from './Cost'
+import './component-styles.css'
 
 function CostList({ costs } = this.state) {
     console.log(costs)
 
     return (
-        <div>
+        <div className="costlist">
             {costs.length > 0 ? (
                 <div>
                     {costs.map((cost) => (

@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { addCost } from '../store/actions/costActions'
 import { connect } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
+import './component-styles.css'
+import TextField from '@material-ui/core/TextField'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from '@material-ui/core/FormControl'
+import Button from '@material-ui/core/Button'
 
 class AddCost extends Component {
     constructor(props) {
@@ -24,22 +31,35 @@ class AddCost extends Component {
     render() {
         return (
             <div>
-                <input
+                <TextField
+                    id="outlined-basic"
+                    label="Reason"
+                    variant="outlined"
                     type="text"
-                    name="reason"
                     onChange={this.setReason}
-                ></input>
-                <input
+                />
+                <TextField
+                    id="outlined-basic"
+                    label="Amount"
+                    variant="outlined"
                     type="number"
                     name="amount"
                     onChange={this.setAmount}
-                ></input>
-                <select onChange={this.setType}>
-                    <option>Select</option>
-                    <option value="Income">Income</option>
-                    <option value="Expense">Expense</option>
-                </select>
-                <button onClick={this.submitCost}>Add Cost</button>
+                />
+                <FormControl>
+                    <InputLabel id="cost-select-type">Select</InputLabel>
+                    <Select
+                        className="select-type"
+                        onChange={this.setType}
+                        labelId="cost-select-type"
+                    >
+                        <MenuItem value="Income">Income</MenuItem>
+                        <MenuItem value="Expense">Expense</MenuItem>
+                    </Select>
+                </FormControl>
+                <Button variant="contained" onClick={this.submitCost}>
+                    Add Cost
+                </Button>
             </div>
         )
     }
@@ -88,6 +108,8 @@ class AddCost extends Component {
                 changedValue = changedValue * -1
                 break
             }
+            default:
+                break
         }
 
         this.setState({

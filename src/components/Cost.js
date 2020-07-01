@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { removeCost, editCost } from '../store/actions/costActions'
+import TextField from '@material-ui/core/TextField'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
+import Button from '@material-ui/core/Button'
 
 export class Cost extends Component {
     constructor(props) {
@@ -26,32 +30,46 @@ export class Cost extends Component {
                 {this.state.editing ? (
                     <div>
                         Editing
-                        <input
+                        <TextField
                             type="text"
                             value={this.state.edit_form.reason}
                             onChange={this.editReason}
-                        ></input>
-                        <input
+                            id="outlined-basic"
+                            label="Reason"
+                            variant="outlined"
+                        ></TextField>
+                        <TextField
                             type="number"
                             onChange={this.editAmount}
                             value={this.state.edit_form.amount}
-                        ></input>
-                        <select
+                            id="outlined-basic"
+                            label="Amount"
+                            variant="outlined"
+                        ></TextField>
+                        <Select
                             onChange={this.editType}
                             value={this.state.edit_form.type}
                         >
-                            <option>Select</option>
-                            <option value="Income">Income</option>
-                            <option value="Expense">Expense</option>
-                        </select>
-                        <button onClick={this.saveEdit}>Save</button>
+                            <MenuItem value="Income">Income</MenuItem>
+                            <MenuItem value="Expense">Expense</MenuItem>
+                        </Select>
+                        <Button variant="contained" onClick={this.saveEdit}>
+                            Save
+                        </Button>
                     </div>
                 ) : (
                     <div>
                         <p>
                             {cost.reason} {cost.amount}e{' '}
-                            <button onClick={this.deleteCost}>Delete</button>
-                            <button onClick={this.editCost}>Edit</button>
+                            <Button
+                                variant="contained"
+                                onClick={this.deleteCost}
+                            >
+                                Delete
+                            </Button>
+                            <Button variant="contained" onClick={this.editCost}>
+                                Edit
+                            </Button>
                         </p>
                     </div>
                 )}
