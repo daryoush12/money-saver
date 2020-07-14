@@ -2,26 +2,55 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Cost from './Cost'
 import './component-styles.css'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import Paper from '@material-ui/core/Paper'
+import { TableRow, makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles({
+    root: {
+        marginTop: 20,
+    },
+
+    emptyBody: {
+        textAlign: 'center',
+        width: 1000,
+    },
+})
 
 function CostList({ costs } = this.state) {
     console.log(costs)
-
+    const classes = useStyles()
     return (
-        <div className="costlist">
-            {costs.length > 0 ? (
-                <div>
-                    {costs.map((cost) => (
-                        <Cost key={cost.id} cost={cost} />
-                    ))}
-                    <br></br>
-                    Monthly gain after expenses: {totalCostTally(costs)}e
-                </div>
-            ) : (
-                <div>No Expenses</div>
-            )}
-        </div>
+        <TableContainer className={classes.root} component={Paper}>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Reason</TableCell>
+                        <TableCell>Amount</TableCell>
+                        <TableCell>Type</TableCell>
+                        <TableCell>Edit</TableCell>
+                        <TableCell>Select</TableCell>
+                    </TableRow>
+                </TableHead>
+                {costs.length > 0 ? (
+                    <TableBody>
+                        {costs.map((cost) => (
+                            <Cost key={cost.id} cost={cost} />
+                        ))}
+                    </TableBody>
+                ) : (
+                    <caption className="emptybody">No Expenses</caption>
+                )}
+            </Table>
+        </TableContainer>
     )
 }
+
+//Monthly gain after expenses: {totalCostTally(costs)}e
 
 function totalCostTally(listofcosts) {
     var result = 0

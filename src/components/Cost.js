@@ -5,6 +5,8 @@ import TextField from '@material-ui/core/TextField'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Button from '@material-ui/core/Button'
+import TableRow from '@material-ui/core/TableRow'
+import TableCell from '@material-ui/core/TableCell'
 
 export class Cost extends Component {
     constructor(props) {
@@ -22,10 +24,10 @@ export class Cost extends Component {
     }
     render() {
         const { cost } = this.props
-        return (
-            <div>
-                {this.state.editing ? (
-                    <div>
+        if (this.state.editing) {
+            return (
+                <TableRow>
+                    <TableCell align="left">
                         <TextField
                             type="text"
                             name="reason"
@@ -35,6 +37,8 @@ export class Cost extends Component {
                             label="Reason"
                             variant="outlined"
                         ></TextField>
+                    </TableCell>
+                    <TableCell align="left">
                         <TextField
                             type="number"
                             name="amount"
@@ -44,6 +48,8 @@ export class Cost extends Component {
                             label="Amount"
                             variant="outlined"
                         ></TextField>
+                    </TableCell>
+                    <TableCell align="left">
                         <Select
                             onChange={this.setInput}
                             value={this.state.edit_form.type}
@@ -52,31 +58,32 @@ export class Cost extends Component {
                             <MenuItem value="Income">Income</MenuItem>
                             <MenuItem value="Expense">Expense</MenuItem>
                         </Select>
+                    </TableCell>
+                    <TableCell align="left">
                         <Button variant="contained" onClick={this.editDone}>
                             Save
                         </Button>
-                    </div>
-                ) : (
-                    <div>
-                        <p>
-                            {cost.reason} {cost.amount}e {cost.type}
-                            <Button
-                                variant="contained"
-                                onClick={this.deleteCost}
-                            >
-                                Delete
-                            </Button>
-                            <Button
-                                variant="contained"
-                                onClick={this.startEdit}
-                            >
-                                Edit
-                            </Button>
-                        </p>
-                    </div>
-                )}
-            </div>
-        )
+                    </TableCell>
+                </TableRow>
+            )
+        } else
+            return (
+                <TableRow>
+                    <TableCell align="left">{cost.reason}</TableCell>
+                    <TableCell align="left">{cost.amount}e</TableCell>
+                    <TableCell align="left">{cost.type}</TableCell>
+                    <TableCell align="left">
+                        <Button variant="contained" onClick={this.startEdit}>
+                            Edit
+                        </Button>
+                    </TableCell>
+                    <TableCell>
+                        <Button variant="contained" onClick={this.deleteCost}>
+                            Delete
+                        </Button>
+                    </TableCell>
+                </TableRow>
+            )
     }
 
     deleteCost(event) {
