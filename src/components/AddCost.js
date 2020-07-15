@@ -9,6 +9,14 @@ import MenuItem from '@material-ui/core/MenuItem'
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from '@material-ui/core/FormControl'
 import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles({
+    custominput: {
+        marginRight: 10,
+    },
+})
 
 class AddCost extends Component {
     constructor(props) {
@@ -28,10 +36,10 @@ class AddCost extends Component {
 
     render() {
         return (
-            <div>
+            <Paper className="cost-add-paper">
                 <p>Add new expense / income source</p>
-                <br></br>
                 <TextField
+                    className="cost-add-input"
                     id="outlined-basic"
                     label="Reason"
                     variant="outlined"
@@ -41,6 +49,7 @@ class AddCost extends Component {
                     value={this.state.form.reason}
                 />
                 <TextField
+                    className="cost-add-input"
                     id="outlined-basic"
                     label="Amount"
                     variant="outlined"
@@ -49,7 +58,7 @@ class AddCost extends Component {
                     onChange={this.setInput}
                     value={this.state.form.amount}
                 />
-                <FormControl>
+                <FormControl className="cost-add-input" variant="outlined">
                     <InputLabel id="cost-select-type">
                         {this.state.form.type !== '' ? (
                             <span>{this.state.form.type}</span>
@@ -58,7 +67,7 @@ class AddCost extends Component {
                         )}
                     </InputLabel>
                     <Select
-                        className="select-type"
+                        className="select-type cost-add-input"
                         onChange={this.setInput}
                         labelId="cost-select-type"
                         name="type"
@@ -70,7 +79,7 @@ class AddCost extends Component {
                 <Button variant="contained" onClick={this.submitCost}>
                     Add
                 </Button>
-            </div>
+            </Paper>
         )
     }
 

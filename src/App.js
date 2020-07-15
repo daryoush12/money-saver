@@ -14,7 +14,6 @@ function App() {
                 <Grid item xs></Grid>
                 <Grid item xs={6}>
                     <CostList></CostList>
-                    <br></br>
                     <AddCost></AddCost>
                 </Grid>
                 <Grid item xs></Grid>

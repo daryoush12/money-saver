@@ -9,3 +9,12 @@
 .emptybody {
     text-align: center !important;
 }
+
+.cost-add-paper {
+    margin-top: 20px;
+    padding: 20px;
+}
+
+.cost-add-input {
+    margin-right: 10px !important;
+}
